@@ -14,7 +14,7 @@ namespace DataHelper
             //get the Path for Driver
             int DriverEnd = StrTestData.LastIndexOf("\\fa_30_saptao_mec");
             String strDriverEnd = StrTestData.Substring(0, DriverEnd);
-            strDriverPath = strDriverEnd + "\\fa_10_shared_resources\\00_Driver";
+            strDriverPath = strDriverEnd + "\\fa_10_shared_resources\\00_Driver\\DriverData.xls";
             return strDriverPath;
         }
         public string strTemp(string StrTestData)
@@ -34,7 +34,7 @@ namespace DataHelper
             //get StrTestDataPath for Driver.xls
             //  C:\APWFISVN\fa_30_saptao_mec\01_TestData\02_Fusion_EMEA\HPE\HPE_02001_FusionEMEA_TradeOrder_OEM_Eiffel_LH_AP_AR_IC.xls
             int End = StrTestData.LastIndexOf("\\01_TestData");
-            int DataPathEnd = End + 12;
+            int DataPathEnd = End + 13;
             strTestDataPath = StrTestData.Substring(DataPathEnd);
             return strTestDataPath;
         }
@@ -48,7 +48,7 @@ namespace DataHelper
             string filename = System.IO.Path.GetFileName(StrTestData);//文件名  “##### .xlsx”
             string extension = System.IO.Path.GetExtension(StrTestData);//扩展名 “.xlsx”
             string strfileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(StrTestData);// 没有扩展名的文件名 “#####”      
-            int i = strfileNameWithoutExtension.IndexOf("0") + 1;
+            int i = strfileNameWithoutExtension.IndexOf("0");
             string StrDataName = strfileNameWithoutExtension.Substring(i);
             return StrDataName;
         }

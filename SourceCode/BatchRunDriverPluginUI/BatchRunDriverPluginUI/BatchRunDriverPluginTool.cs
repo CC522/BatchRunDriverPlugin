@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataHelper;
+using System.IO;
 
 namespace BatchRunDriverPluginUI
 {
@@ -53,16 +54,35 @@ namespace BatchRunDriverPluginUI
             {
              MessageBox.Show("Please Choose one file for TestData!", "Error"); 
             }
-            else {
-            //    // FilePath:  C:\APWFISVN\fa_30_saptao_mec\01_TestData\02_Fusion_EMEA\HPE
-            //    //Temp :     C:\APWFISVN\fa_30_saptao_mec\03_TEMP
-            //    //OutPut:   C:\APWFISVN\fa_30_saptao_mec\02_Report\02_FusionEMEA\HPE\Batch1\Report_TR01_02006_FusionEMEA_CreditOrder_Eiffel_LH_AP_AR_IC_HPE_RunTime1_5-20-2015_11-46-34_AM
-            //    //Driver:   C:\APWFISVN\fa_10_shared_resources\00_Driver
-
+            else
+            {
                PublicFunction GetPath  = new PublicFunction();
                string strDriverPath = GetPath.strDriverPath(StrTestData);
                string strTempPath = GetPath.strTemp(StrTestData);
                string strTestDataPath = GetPath.strTestDataPath(StrTestData);
+
+               //Copy the OutPut into the Temp
+               DirectoryInfo dir = new DirectoryInfo("Rescources");
+               string StrPath = dir.Parent.Parent.Parent.FullName.ToString();
+               string templateXlsPath = StrPath + @"\Resources" + @"\" + "Output.xlsx";
+               //byte[] OutputXls = BatchRunResources.Output; 
+               //FileStream outputExcelFile = new FileStream(templateXlsPath, FileMode.Create, FileAccess.Write); 
+               //outputExcelFile.Write(OutputXls, 0, OutputXls.Length); 
+               //outputExcelFile.Close(); 
+               bool isrewrite = true; // true=覆盖已存在的同名文件,false则反之   Copy a New OutPut to the Temp 
+               System.IO.File.Copy(templateXlsPath, strTempPath, isrewrite);
+
+               //Get Data name 
+               string strTestDataNameValue = GetPath.StrDataName(StrTestData);
+
+               ExcelOpera GetData = new ExcelOpera();
+            //Get the Values that would be add in the Driver.xls
+               List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData);
+               string StrComCodeValue = StrExcelValues[0];
+               string StrTestAssentValue = StrExcelValues[1];
+               string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;
+               string StrRunTimeValue = Convert.ToString(1);  // in the Last Version  we can Get the RunTime from Test Data to Add in Driver.xls
+               GetData.InsertRowsValues(strDriverPath, StrTestCaseName, strTestDataPath, StrComCodeValue, StrTestAssentValue, StrRunTimeValue);
 
             }
         }
@@ -80,29 +100,8 @@ namespace BatchRunDriverPluginUI
                 MessageBox.Show("Please Choose one file for OutPut!", "Error");
             }
             else{
-                PublicFunction GetPath = new PublicFunction();
-                //get Temp Path 
-                string strTempPath = GetPath.strTemp(StrTestData);
-                //Copy the OutPut into the Temp
-                bool isrewrite = true; // true=覆盖已存在的同名文件,false则反之
-                System.IO.File.Copy(StrOutPutData, strTempPath, isrewrite);
 
-                //get DriverPath
-                string strDriverPath = GetPath.strDriverPath(StrTestData);
-               
-                //Data for add to Driver.xls
-                string strTestDataPath = GetPath.strTestDataPath(StrTestData);
-                //Get Data name 
-                string strTestDataNameValue = GetPath.StrDataName(StrTestData);
-
-                ExcelOpera GetData = new ExcelOpera();
-               // List<String> StrTestDataValue = GetData.getExcelCompanyCode(StrTestData);
-                List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData);
-                string StrComCodeValue = StrExcelValues[0];
-                string StrTestAssentValue = StrExcelValues[1];
-               // string StrCompanyCode = GetData.getExcelCompanyCode(StrTestData);
-                //string StrTestAsset = GetData.getExcelTestAsset(StrTestData,2,4);
-                string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;
+                ExcelOperation(StrTestData, StrOutPutData);
             }
         }
 
@@ -120,12 +119,35 @@ namespace BatchRunDriverPluginUI
             }
             else
             {
-                PublicFunction GetData = new PublicFunction();
-                string strTempPath = GetData.strTemp(StrTestData);
-                //Copy the OutPut into the Temp
-                bool isrewrite = true; // true=覆盖已存在的同名文件,false则反之
-                System.IO.File.Copy(StrOutPutData, strTempPath, isrewrite);
+                ExcelOperation(StrTestData, StrOutPutData);
             }
+        }
+
+        public void ExcelOperation(string StrTestData, string StrOutPutData)
+        {
+            PublicFunction GetPath = new PublicFunction();
+            //get Temp Path 
+            string strTempPath = GetPath.strTemp(StrTestData);
+            //Copy the OutPut into the Temp
+            bool isrewrite = true; // true=覆盖已存在的同名文件,false则反之
+            System.IO.File.Copy(StrOutPutData, strTempPath, isrewrite);
+
+            //get DriverPath
+            string strDriverPath = GetPath.strDriverPath(StrTestData);
+
+            //Data for add to Driver.xls
+            string strTestDataPath = GetPath.strTestDataPath(StrTestData);
+            //Get Data name 
+            string strTestDataNameValue = GetPath.StrDataName(StrTestData);
+
+            //Get the Values that would be add in the Driver.xls
+            ExcelOpera GetData = new ExcelOpera();          
+            List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData);
+            string StrComCodeValue = StrExcelValues[0];
+            string StrTestAssentValue = StrExcelValues[1];
+            string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;
+            string StrRunTimeValue = GetData.GetRunTimeVlaue(StrOutPutData);
+            GetData.InsertRowsValues(strDriverPath, StrTestCaseName, strTestDataPath, StrComCodeValue, StrTestAssentValue, StrRunTimeValue);
         }
 
     }

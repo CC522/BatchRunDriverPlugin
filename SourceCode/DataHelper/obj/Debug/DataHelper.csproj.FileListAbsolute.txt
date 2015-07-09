@@ -10,3 +10,15 @@ C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.csprojResolveAssembl
 C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.csproj.ResolveComReference.cache
 C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.dll
 C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.pdb
+C:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\bin\Debug\DataHelper.dll
+C:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\bin\Debug\DataHelper.pdb
+C:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.csprojResolveAssemblyReference.cache
+C:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.csproj.ResolveComReference.cache
+C:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.dll
+C:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.pdb
+E:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\bin\Debug\DataHelper.dll
+E:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\bin\Debug\DataHelper.pdb
+E:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.csprojResolveAssemblyReference.cache
+E:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.csproj.ResolveComReference.cache
+E:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.dll
+E:\GitHub\BatchRunDriverPlugin\SourceCode\DataHelper\obj\Debug\DataHelper.pdb
