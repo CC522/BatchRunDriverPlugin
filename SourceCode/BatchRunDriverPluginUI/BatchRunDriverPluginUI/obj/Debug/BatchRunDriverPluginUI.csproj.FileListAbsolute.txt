@@ -1,0 +1,22 @@
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\BatchRunDriverPluginUI.exe.config
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\BatchRunDriverPluginUI.exe
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\BatchRunDriverPluginUI.pdb
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\DataHelper.dll
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\DataHelper.pdb
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.csprojResolveAssemblyReference.cache
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.BatchRunDriverPluginTool.resources
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.Properties.Resources.resources
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.csproj.GenerateResource.Cache
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.exe
+C:\GitHub\Tools\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.pdb
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\BatchRunDriverPluginUI.exe.config
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.exe
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.pdb
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.csprojResolveAssemblyReference.cache
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.BatchRunDriverPluginTool.resources
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.Properties.Resources.resources
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\obj\Debug\BatchRunDriverPluginUI.csproj.GenerateResource.Cache
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\BatchRunDriverPluginUI.exe
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\BatchRunDriverPluginUI.pdb
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\DataHelper.dll
+C:\GitHub\Tools\Old Version\BatchRunDriverPluginUI\BatchRunDriverPluginUI\bin\Debug\DataHelper.pdb

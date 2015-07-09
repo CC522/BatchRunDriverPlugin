@@ -1,0 +1,12 @@
+C:\GitHub\Tools\DataHelper\bin\Debug\DataHelper.dll
+C:\GitHub\Tools\DataHelper\bin\Debug\DataHelper.pdb
+C:\GitHub\Tools\DataHelper\obj\Debug\DataHelper.csproj.ResolveComReference.cache
+C:\GitHub\Tools\DataHelper\obj\Debug\DataHelper.dll
+C:\GitHub\Tools\DataHelper\obj\Debug\DataHelper.pdb
+C:\GitHub\Tools\DataHelper\obj\Debug\DataHelper.csprojResolveAssemblyReference.cache
+C:\GitHub\Tools\Old Version\DataHelper\bin\Debug\DataHelper.dll
+C:\GitHub\Tools\Old Version\DataHelper\bin\Debug\DataHelper.pdb
+C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.csprojResolveAssemblyReference.cache
+C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.csproj.ResolveComReference.cache
+C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.dll
+C:\GitHub\Tools\Old Version\DataHelper\obj\Debug\DataHelper.pdb
