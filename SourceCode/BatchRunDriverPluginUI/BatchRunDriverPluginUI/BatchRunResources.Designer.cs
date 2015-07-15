@@ -69,5 +69,30 @@ namespace BatchRunDriverPluginUI {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set objArgs = wscript.Arguments
+        ///TestPath=objArgs(0)
+        ///Set app=CreateObject(&quot;QuickTest.Application&quot;)
+        ///app.SetActiveAddins Array(&quot;SAP&quot;,&quot;Web&quot;,&quot;.NET&quot;)
+        ///If Not app.Launched Then
+        ///	app.Launch
+        ///Else
+        ///	app.Quit
+        ///	wait 10
+        ///	app.Launch
+        ///End If
+        ///app.Visible=True
+        ///app.Open TestPath
+        ///Set qtResultsOpt = CreateObject(&quot;QuickTest.RunResultsOptions&quot;)
+        ///qtResultsOpt.ResultsLocation = &quot;&lt;TempLocation&gt;&quot;
+        ///app.Test.Run qtResultsOpt,True
+        ///app.Quit.
+        /// </summary>
+        public static string RunDriver {
+            get {
+                return ResourceManager.GetString("RunDriver", resourceCulture);
+            }
+        }
     }
 }

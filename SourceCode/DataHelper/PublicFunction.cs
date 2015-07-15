@@ -17,6 +17,15 @@ namespace DataHelper
             strDriverPath = strDriverEnd + "\\fa_10_shared_resources\\00_Driver\\DriverData.xls";
             return strDriverPath;
         }
+        //Get the Driver Script Path
+        public string DriverPath(string StrTestData)
+        {
+            string DriverPath;
+            int DriverEnd = StrTestData.LastIndexOf("\\fa_30_saptao_mec");
+            String strDriverEnd = StrTestData.Substring(0, DriverEnd);
+            DriverPath = strDriverEnd + "\\fa_10_shared_resources\\00_Driver\\Driver";
+            return DriverPath;
+        }
         public string strTemp(string StrTestData)
         {
             string strTemp;

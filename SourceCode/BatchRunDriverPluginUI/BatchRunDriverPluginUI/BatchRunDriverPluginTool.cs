@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataHelper;
 using System.IO;
+using System.Diagnostics;
 
 namespace BatchRunDriverPluginUI
 {
@@ -61,9 +62,16 @@ namespace BatchRunDriverPluginUI
                string strTempPath = GetPath.strTemp(StrTestData);
                string strTestDataPath = GetPath.strTestDataPath(StrTestData);
 
+                //Get Driver Script Path
+               string DriverScriptPath = GetPath.DriverPath(StrTestData);
+               //Get the Driver Script path
+               string DriverPath = GetPath.DriverPath(StrTestData);
                //Copy the OutPut into the Temp
                DirectoryInfo dir = new DirectoryInfo("Rescources");
                string StrPath = dir.Parent.Parent.Parent.FullName.ToString();
+                //Get the Path of the vbs
+               string tempVBSPath = StrPath + @"\Resources" + @"\" + "RunDriver.vbs";
+                //Get the Path of the output
                string templateXlsPath = StrPath + @"\Resources" + @"\" + "Output.xlsx";
                //byte[] OutputXls = BatchRunResources.Output; 
                //FileStream outputExcelFile = new FileStream(templateXlsPath, FileMode.Create, FileAccess.Write); 
@@ -84,6 +92,11 @@ namespace BatchRunDriverPluginUI
                string StrRunTimeValue = Convert.ToString(1);  // in the Last Version  we can Get the RunTime from Test Data to Add in Driver.xls
                GetData.InsertRowsValues(strDriverPath, StrTestCaseName, strTestDataPath, StrComCodeValue, StrTestAssentValue, StrRunTimeValue);
 
+              //Run the Driver VBS 
+               ProcessStartInfo startInfo = new ProcessStartInfo();
+               startInfo.FileName = "wscript.exe";
+               startInfo.Arguments = tempVBSPath + " " + DriverScriptPath;
+               Process.Start(startInfo);
             }
         }
 
@@ -102,6 +115,19 @@ namespace BatchRunDriverPluginUI
             else{
 
                 ExcelOperation(StrTestData, StrOutPutData);
+
+                //Get the Driver Script path
+                PublicFunction GetDriverScriptPath = new PublicFunction();
+                string DriverScriptPath = GetDriverScriptPath.DriverPath(StrTestData);
+                DirectoryInfo dir = new DirectoryInfo("Rescources");
+                string StrPath = dir.Parent.Parent.Parent.FullName.ToString();
+                //Get the Path of the vbs
+               string tempVBSPath = StrPath + @"\Resources" + @"\" + "RunDriver.vbs";
+                //Run the Driver VBS 
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "wscript.exe";
+                startInfo.Arguments = tempVBSPath +" "+DriverScriptPath;
+                Process.Start(startInfo);
             }
         }
 
@@ -120,6 +146,18 @@ namespace BatchRunDriverPluginUI
             else
             {
                 ExcelOperation(StrTestData, StrOutPutData);
+                //Get the Driver Script path
+                PublicFunction GetDriverScriptPath = new PublicFunction();
+                string DriverScriptPath = GetDriverScriptPath.DriverPath(StrTestData);
+                DirectoryInfo dir = new DirectoryInfo("Rescources");
+                string StrPath = dir.Parent.Parent.Parent.FullName.ToString();
+                //Get the Path of the vbs
+                string tempVBSPath = StrPath + @"\Resources" + @"\" + "RunDriver.vbs";
+                //Run the Driver VBS 
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "wscript.exe";
+                startInfo.Arguments = tempVBSPath + " " + DriverScriptPath;
+                Process.Start(startInfo);
             }
         }
 

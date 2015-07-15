@@ -52,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 72);
+            this.label2.Location = new System.Drawing.Point(12, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 13);
             this.label2.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             // txtOutputPath
             // 
-            this.txtOutputPath.Location = new System.Drawing.Point(154, 70);
+            this.txtOutputPath.Location = new System.Drawing.Point(154, 75);
             this.txtOutputPath.Name = "txtOutputPath";
             this.txtOutputPath.Size = new System.Drawing.Size(352, 20);
             this.txtOutputPath.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             // btnBrowse2
             // 
-            this.btnBrowse2.Location = new System.Drawing.Point(539, 67);
+            this.btnBrowse2.Location = new System.Drawing.Point(539, 72);
             this.btnBrowse2.Name = "btnBrowse2";
             this.btnBrowse2.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse2.TabIndex = 5;
@@ -104,7 +104,7 @@
             // 
             // btnReRun
             // 
-            this.btnReRun.Location = new System.Drawing.Point(296, 157);
+            this.btnReRun.Location = new System.Drawing.Point(298, 157);
             this.btnReRun.Name = "btnReRun";
             this.btnReRun.Size = new System.Drawing.Size(75, 23);
             this.btnReRun.TabIndex = 7;

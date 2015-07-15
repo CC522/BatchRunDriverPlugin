@@ -52,7 +52,6 @@ namespace DataHelper
                     string Asset = tempAssent.Substring(tempAssent.Length - 3);
                     str.Add(Asset);
                 }
-
             }
             objExcelWorkbook.Close(false, StrTestData, false);
             objExcelApp.Quit();
@@ -87,8 +86,7 @@ namespace DataHelper
                 string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, i]).Text.ToString();
                 if (strColumnsName == "RunTime")
                 {
-                    rowcolum= i;//得到Colum号   
-                   
+                    rowcolum= i;//得到Colum号                   
                 }
             }
             String RunTimeValues = ((Range)objExcelWorkSheet.Cells[rowsint,rowcolum]).Text.ToString();
@@ -99,6 +97,7 @@ namespace DataHelper
             NAR(objExcelWorkSheet);
             return RunTimeValues;
         }
+       
         // Insert Row in the Driver.xls
         public void InsertRowsValues(string StrDriverPath, string StrCaseName, string StrTestDataPath, string StrComCode, string StrAsset, string StrRunTime)
         {
