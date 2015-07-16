@@ -61,6 +61,20 @@ namespace DataHelper
             string StrDataName = strfileNameWithoutExtension.Substring(i);
             return StrDataName;
         }
+        //List qu chongfu 
+       public List<String> getNewList(List<String> strList)
+       {
+        List<String> list = new List<String>();
+        for(int i=0; i<strList.Count; i++)
+        {
+            String str = strList[i];  //获取传入集合对象的每一个元素
+            if(!list.Contains(str))
+            {   //查看新集合中是否有指定的元素，如果没有则加入
+                list.Add(str);
+            }
+        }
+        return list;  //返回集合
+      }
  
     }
 }

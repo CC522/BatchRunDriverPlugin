@@ -53,7 +53,13 @@ namespace BatchRunDriverPluginUI
             //string strTemp;
             if (StrTestData == String.Empty)
             {
-             MessageBox.Show("Please Choose one file for TestData!", "Error"); 
+             MessageBox.Show("Please Choose one file for TestData!", "Error");
+             return;
+            }
+            if (cboRunTimeValues.Visible == false)
+            {
+                MessageBox.Show("Please Click Show RunTime to Choose RunTime for First Run!", "Error");
+                return;
             }
             else
             {
@@ -84,12 +90,14 @@ namespace BatchRunDriverPluginUI
                string strTestDataNameValue = GetPath.StrDataName(StrTestData);
 
                ExcelOpera GetData = new ExcelOpera();
-            //Get the Values that would be add in the Driver.xls
-               List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData);
+
+               string StrRunTimeValue = cboRunTimeValues.SelectedValue.ToString();  // in the Last Version  we can Get the RunTime from Test Data to Add in Driver.xls
+              //Get the Values that would be add in the Driver.xls
+               List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData, StrRunTimeValue);
                string StrComCodeValue = StrExcelValues[0];
                string StrTestAssentValue = StrExcelValues[1];
                string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;
-               string StrRunTimeValue = Convert.ToString(1);  // in the Last Version  we can Get the RunTime from Test Data to Add in Driver.xls
+              
                GetData.InsertRowsValues(strDriverPath, StrTestCaseName, strTestDataPath, StrComCodeValue, StrTestAssentValue, StrRunTimeValue);
 
               //Run the Driver VBS 
@@ -97,6 +105,7 @@ namespace BatchRunDriverPluginUI
                startInfo.FileName = "wscript.exe";
                startInfo.Arguments = tempVBSPath + " " + DriverScriptPath;
                Process.Start(startInfo);
+               cboRunTimeValues.Visible = false;
             }
         }
 
@@ -107,10 +116,12 @@ namespace BatchRunDriverPluginUI
             if (StrTestData == String.Empty)
             {
                 MessageBox.Show("Please Choose one file for TestData!", "Error");
+                return;
             }
             if (StrOutPutData == String.Empty)
             {
                 MessageBox.Show("Please Choose one file for OutPut!", "Error");
+                return;
             }
             else{
 
@@ -138,10 +149,12 @@ namespace BatchRunDriverPluginUI
             if (StrTestData == String.Empty)
             {
                 MessageBox.Show("Please Choose one file for TestData!", "Error");
+                return;
             }
             if (StrOutPutData == String.Empty)
             {
                 MessageBox.Show("Please Choose one file for OutPut!", "Error");
+                return;
             }
             else
             {
@@ -179,13 +192,30 @@ namespace BatchRunDriverPluginUI
             string strTestDataNameValue = GetPath.StrDataName(StrTestData);
 
             //Get the Values that would be add in the Driver.xls
-            ExcelOpera GetData = new ExcelOpera();          
-            List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData);
+            ExcelOpera GetData = new ExcelOpera();
+            string StrRunTimeValue = GetData.GetRunTimeVlaue(StrOutPutData);
+            List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData, StrRunTimeValue);
             string StrComCodeValue = StrExcelValues[0];
             string StrTestAssentValue = StrExcelValues[1];
-            string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;
-            string StrRunTimeValue = GetData.GetRunTimeVlaue(StrOutPutData);
+            string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;           
             GetData.InsertRowsValues(strDriverPath, StrTestCaseName, strTestDataPath, StrComCodeValue, StrTestAssentValue, StrRunTimeValue);
+        }
+
+        private void btnShowRunTime_Click(object sender, EventArgs e)
+        {
+            cboRunTimeValues.Visible = true;
+            string StrTestData = txtTestDataPath.Text.Trim();
+            if (StrTestData == String.Empty)
+            {
+                MessageBox.Show("Please Choose one file for TestData!", "Error");
+                cboRunTimeValues.Visible = false;
+                return;
+            }
+            ExcelOpera GetData = new ExcelOpera();
+            List<string> strRunTimeForRun = GetData.GetRunTimeForRun(StrTestData);
+            PublicFunction Function = new PublicFunction();
+            List<string> strRunTimeValues = Function.getNewList(strRunTimeForRun);
+            cboRunTimeValues.DataSource = strRunTimeValues;
         }
 
     }

@@ -16,7 +16,7 @@ namespace DataHelper
         protected Microsoft.Office.Interop.Excel.Workbook objExcelWorkbook;//定义Excel workbook工作簿对象 
         private Worksheet objExcelWorkSheet;//定义Workbook工作表对象 
 
-        public List<String> GetExcelValuesList(string StrTestData)
+        public List<String> GetExcelValuesList(string StrTestData,string StrRuntime)
         {
             objExcelApp = new Microsoft.Office.Interop.Excel.Application();
             objExcelWorkBooks = objExcelApp.Workbooks;
@@ -32,26 +32,52 @@ namespace DataHelper
             int columnsint = objExcelWorkSheet.UsedRange.Cells.Columns.Count;//得到列数
 
             string temp1 = ((Range)objExcelWorkSheet.Cells[1, 1]).Text.ToString();
-            //遍历得到CompanyCode和TestAsset、Runtime
+            //遍历得到CompanyCode和TestAsset
             int rowcolum = 0;
+            int RowID = 0;
             List<String> str = new List<String>();
 
             for (int i = 1; i < columnsint; i++)
             {
                 string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, i]).Text.ToString();
-                if (strColumnsName == "CompanyCode")
+                if (strColumnsName == "RunTime")
                 {
-                    rowcolum = i;//得到行号
-                    String temp = ((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString();
-                    str.Add(((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString());
+                    rowcolum = i;//Get the columm no
+                    for (int j = 1; j < rowsint;j++ )
+                    {
+                        string strRowValue = ((Range)objExcelWorkSheet.Cells[j, i]).Text.ToString();
+                        if(strRowValue == StrRuntime)
+                        {
+                            RowID = j;
+                            if (strColumnsName == "CompanyCode")
+                            {
+                                rowcolum = i;//得到Column号
+                                String temp = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
+                                str.Add(((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString());
+                            }
+                            if (strColumnsName == "TargetBoxName")
+                            {
+                                rowcolum = i;//得到行号
+                                String tempAssent = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
+                                string Asset = tempAssent.Substring(tempAssent.Length - 3);
+                                str.Add(Asset);
+                            }
+                        }
+                    }
                 }
-                if (strColumnsName == "TargetBoxName")
-                {
-                    rowcolum = i;//得到行号
-                    String tempAssent = ((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString();
-                    string Asset = tempAssent.Substring(tempAssent.Length - 3);
-                    str.Add(Asset);
-                }
+                //if (strColumnsName == "CompanyCode")
+                //{
+                //    rowcolum = i;//得到Column号
+                //    String temp = ((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString();
+                //    str.Add(((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString());
+                //}
+                //if (strColumnsName == "TargetBoxName")
+                //{
+                //    rowcolum = i;//得到行号
+                //    String tempAssent = ((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString();
+                //    string Asset = tempAssent.Substring(tempAssent.Length - 3);
+                //    str.Add(Asset);
+                //}
             }
             objExcelWorkbook.Close(false, StrTestData, false);
             objExcelApp.Quit();
@@ -142,6 +168,47 @@ namespace DataHelper
             NAR(objExcelWorkbook);
             NAR(objExcelWorkSheet);
         }
+        // Get The RunTime For First Run @2015-7-16 by CC
+        public List<String> GetRunTimeForRun(string  StrTestData)
+        { 
+            objExcelApp = new Microsoft.Office.Interop.Excel.Application();
+            objExcelWorkBooks = objExcelApp.Workbooks;
+            objExcelWorkbook = objExcelWorkBooks.Open(StrTestData, 0, false, 5, "", "", true,
+            Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+
+            //Open the Sheet 
+            objExcelWorkSheet = (Worksheet)objExcelWorkbook.Worksheets["Global"]; //Exce工作簿的Sheet
+            objExcelWorkSheet.Select(Type.Missing);
+
+            //取得总记录行数   (包括标题列)
+            int rowsint = objExcelWorkSheet.UsedRange.Cells.Rows.Count; //得到行数
+            int columnsint = objExcelWorkSheet.UsedRange.Cells.Columns.Count;//得到列数
+
+            string temp1 = ((Range)objExcelWorkSheet.Cells[1, 1]).Text.ToString();
+            //遍历得到RunTime
+            int rowcolum = 0;
+            List<String> str = new List<String>();
+            for (int i = 1; i < columnsint; i++)
+            {
+                string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, i]).Text.ToString();
+                if (strColumnsName == "RunTime")
+                {
+                    rowcolum = i;//Get Column No 
+                    for (int j = 2; j < rowsint; j++)
+                    {
+                        string StrRunTimeValue = ((Range)objExcelWorkSheet.Cells[j, i]).Text.ToString();
+                        str.Add(StrRunTimeValue);
+                    }
+                }
+            }
+            objExcelWorkbook.Close(false, StrTestData, false);
+            objExcelApp.Quit();
+            NAR(objExcelApp);
+            NAR(objExcelWorkbook);
+            NAR(objExcelWorkSheet);
+            return str;
+        }
+
 
         // 此函数用来释放对象的相关资源
         private void NAR(Object o)
