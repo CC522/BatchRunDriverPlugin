@@ -159,6 +159,9 @@ namespace BatchRunDriverPluginUI
             else
             {
                 ExcelOperation(StrTestData, StrOutPutData);
+                //Edit work Flow for Mapping 
+                ExcelOpera GetData = new ExcelOpera();
+                GetData.EditWorkFlow(StrTestData);
                 //Get the Driver Script path
                 PublicFunction GetDriverScriptPath = new PublicFunction();
                 string DriverScriptPath = GetDriverScriptPath.DriverPath(StrTestData);

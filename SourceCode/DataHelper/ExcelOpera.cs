@@ -37,33 +37,34 @@ namespace DataHelper
             int RowID = 0;
             List<String> str = new List<String>();
 
-            for (int i = 1; i < columnsint; i++)
+            for (int i = 1; i <= columnsint; i++)
             {
                 string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, i]).Text.ToString();
                 if (strColumnsName == "RunTime")
                 {
                     rowcolum = i;//Get the columm no
-                    for (int j = 1; j < rowsint;j++ )
+                    for (int j = 1; j <= rowsint;j++ )
                     {
                         string strRowValue = ((Range)objExcelWorkSheet.Cells[j, i]).Text.ToString();
                         if(strRowValue == StrRuntime)
                         {
                             RowID = j;
-                            if (strColumnsName == "CompanyCode")
-                            {
-                                rowcolum = i;//得到Column号
-                                String temp = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
-                                str.Add(((Range)objExcelWorkSheet.Cells[2, i]).Text.ToString());
-                            }
-                            if (strColumnsName == "TargetBoxName")
-                            {
-                                rowcolum = i;//得到行号
-                                String tempAssent = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
-                                string Asset = tempAssent.Substring(tempAssent.Length - 3);
-                                str.Add(Asset);
-                            }
                         }
                     }
+                }
+                  if (strColumnsName == "CompanyCode")
+                 {
+                      rowcolum = i;//得到Column号
+                      String temp = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
+                      str.Add(((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString());
+                  }
+                  if (strColumnsName == "TargetBoxName")
+                 {
+                      rowcolum = i;//得到行号
+                      String tempAssent = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
+                      string Asset = tempAssent.Substring(tempAssent.Length - 3);
+                      str.Add(Asset);
+                   }
                 }
                 //if (strColumnsName == "CompanyCode")
                 //{
@@ -78,7 +79,6 @@ namespace DataHelper
                 //    string Asset = tempAssent.Substring(tempAssent.Length - 3);
                 //    str.Add(Asset);
                 //}
-            }
             objExcelWorkbook.Close(false, StrTestData, false);
             objExcelApp.Quit();
             NAR(objExcelApp);
@@ -107,7 +107,7 @@ namespace DataHelper
             string temp1 = ((Range)objExcelWorkSheet.Cells[1, 1]).Text.ToString();
             //遍历得到CompanyCode和TestAsset、Runtime
             int rowcolum = 0;
-            for (int i = 1; i < columnsint; i++)
+            for (int i = 1; i <= columnsint; i++)
             {
                 string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, i]).Text.ToString();
                 if (strColumnsName == "RunTime")
@@ -137,7 +137,7 @@ namespace DataHelper
             int rowsint = objExcelWorkSheet.UsedRange.Cells.Rows.Count; //得到行数
             if (rowsint > 1)
             {
-                for (int i = 1; i < rowsint; i++)
+                for (int i = 2; i <= rowsint; i++)
                 {
                     string strFlagValue = ((Range)objExcelWorkSheet.Cells[i, 1]).Text.ToString();
                     if (strFlagValue == "Y")
@@ -188,13 +188,13 @@ namespace DataHelper
             //遍历得到RunTime
             int rowcolum = 0;
             List<String> str = new List<String>();
-            for (int i = 1; i < columnsint; i++)
+            for (int i = 1; i <= columnsint; i++)
             {
                 string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, i]).Text.ToString();
                 if (strColumnsName == "RunTime")
                 {
                     rowcolum = i;//Get Column No 
-                    for (int j = 2; j < rowsint; j++)
+                    for (int j = 2; j <= rowsint; j++)
                     {
                         string StrRunTimeValue = ((Range)objExcelWorkSheet.Cells[j, i]).Text.ToString();
                         str.Add(StrRunTimeValue);
@@ -209,6 +209,64 @@ namespace DataHelper
             return str;
         }
 
+        // Change the Mapping WorkFlow  @2015-7-16 By CC
+        public void EditWorkFlow(string StrTestData)
+        {
+            objExcelApp = new Microsoft.Office.Interop.Excel.Application();
+            objExcelWorkBooks = objExcelApp.Workbooks;
+            objExcelWorkbook = objExcelWorkBooks.Open(StrTestData, 0, false, 5, "", "", true,
+            Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+
+            objExcelWorkSheet = (Worksheet)objExcelWorkbook.Worksheets["WorkFlow"]; //strSheetName是指的Exce工作簿的Sheet名，如果没有命名则为"1" 
+            objExcelWorkSheet.Select(Type.Missing);
+            int rowsint = objExcelWorkSheet.UsedRange.Cells.Rows.Count; //得到行数
+            int columnsint = objExcelWorkSheet.UsedRange.Cells.Columns.Count;//得到列数
+            int rowNo = 0;
+            int ParameterRowNo = 0;
+            int columnNo = 0;
+            int FlagColumnNo = 0;
+            for (int j = 1; j <= columnsint; j++)
+            {
+                string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, j]).Text.ToString();
+                if (strColumnsName == "Flag")
+                {
+                    FlagColumnNo = j;
+                }
+                if (strColumnsName == "BusinessFlow")
+                {
+                    rowNo = j;
+                }
+                if (strColumnsName == "ParameterValue")
+                {
+                    ParameterRowNo = j;
+                }
+            }
+            for (int i = 2; i <= rowsint; i++)
+            {
+                string strFlagValue = ((Range)objExcelWorkSheet.Cells[i, FlagColumnNo]).Text.ToString();
+                if (strFlagValue =="Y")
+                {
+                    int RowNO = i;
+                    objExcelWorkSheet.Cells[RowNO, FlagColumnNo] = "N";
+                }
+               string strBusinessFlow = ((Range)objExcelWorkSheet.Cells[i, rowNo]).Text.ToString();
+               if (strBusinessFlow == "HeaderMapping" || strBusinessFlow == "TaxMapping" || strBusinessFlow == "LineItemsMapping")
+               {
+                 columnNo = i;
+                 string strParameterValue = ((Range)objExcelWorkSheet.Cells[i, ParameterRowNo]).Text.ToString();
+                 if (strParameterValue == "IR" || strParameterValue == "TradeBilling" || strParameterValue == "TradeCredit" || strParameterValue == "TradeDebit" || strParameterValue == "TradeReturn")
+                  {
+                    objExcelWorkSheet.Cells[i, 1] = "Y";
+                  }
+                }
+            }
+            objExcelWorkbook.Save();
+            objExcelWorkbook.Close(false, StrTestData, false);
+            objExcelApp.Quit();
+            NAR(objExcelApp);
+            NAR(objExcelWorkbook);
+            NAR(objExcelWorkSheet);
+        }
 
         // 此函数用来释放对象的相关资源
         private void NAR(Object o)
