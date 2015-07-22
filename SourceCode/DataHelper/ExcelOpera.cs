@@ -11,7 +11,7 @@ namespace DataHelper
 {
     public class ExcelOpera
     {
-        protected Microsoft.Office.Interop.Excel.Application objExcelApp;//定义Excel Application对象 
+        protected Microsoft.Office.Interop.Excel.Application objExcelApp;//define Excel Application obj
         private Microsoft.Office.Interop.Excel.Workbooks objExcelWorkBooks;//定义Workbook工作簿集合对象 
         protected Microsoft.Office.Interop.Excel.Workbook objExcelWorkbook;//定义Excel workbook工作簿对象 
         private Worksheet objExcelWorkSheet;//定义Workbook工作表对象 
@@ -137,7 +137,7 @@ namespace DataHelper
             int rowsint = objExcelWorkSheet.UsedRange.Cells.Rows.Count; //得到行数
             if (rowsint > 1)
             {
-                for (int i = 2; i <= rowsint; i++)
+                for (int i = 2;i <= rowsint; i++)
                 {
                     string strFlagValue = ((Range)objExcelWorkSheet.Cells[i, 1]).Text.ToString();
                     if (strFlagValue == "Y")
@@ -169,8 +169,8 @@ namespace DataHelper
             NAR(objExcelWorkSheet);
         }
         // Get The RunTime For First Run @2015-7-16 by CC
-        public List<String> GetRunTimeForRun(string  StrTestData)
-        { 
+        public List<String> GetRunTimeForRun(string StrTestData)
+        {
             objExcelApp = new Microsoft.Office.Interop.Excel.Application();
             objExcelWorkBooks = objExcelApp.Workbooks;
             objExcelWorkbook = objExcelWorkBooks.Open(StrTestData, 0, false, 5, "", "", true,
@@ -217,10 +217,10 @@ namespace DataHelper
             objExcelWorkbook = objExcelWorkBooks.Open(StrTestData, 0, false, 5, "", "", true,
             Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
 
-            objExcelWorkSheet = (Worksheet)objExcelWorkbook.Worksheets["WorkFlow"]; //strSheetName是指的Exce工作簿的Sheet名，如果没有命名则为"1" 
+            objExcelWorkSheet = (Worksheet)objExcelWorkbook.Worksheets["WorkFlow"]; //strSheetName is the Sheet Name of Exce，if there is no name then Defult is "1" 
             objExcelWorkSheet.Select(Type.Missing);
-            int rowsint = objExcelWorkSheet.UsedRange.Cells.Rows.Count; //得到行数
-            int columnsint = objExcelWorkSheet.UsedRange.Cells.Columns.Count;//得到列数
+            int rowsint = objExcelWorkSheet.UsedRange.Cells.Rows.Count; //get the Row Number
+            int columnsint = objExcelWorkSheet.UsedRange.Cells.Columns.Count;//get the column number
             int rowNo = 0;
             int ParameterRowNo = 0;
             int columnNo = 0;

@@ -74,7 +74,7 @@ namespace BatchRunDriverPluginUI
                string DriverPath = GetPath.DriverPath(StrTestData);
                //Copy the OutPut into the Temp
                DirectoryInfo dir = new DirectoryInfo("Rescources");
-               string StrPath = dir.Parent.Parent.Parent.FullName.ToString();
+               string StrPath = dir.FullName.ToString();
                 //Get the Path of the vbs
                string tempVBSPath = StrPath + @"\Resources" + @"\" + "RunDriver.vbs";
                 //Get the Path of the output
@@ -215,9 +215,9 @@ namespace BatchRunDriverPluginUI
                 return;
             }
             ExcelOpera GetData = new ExcelOpera();
-            List<string> strRunTimeForRun = GetData.GetRunTimeForRun(StrTestData);
+            List<string> strRunTimeForRunValues = GetData.GetRunTimeForRun(StrTestData);
             PublicFunction Function = new PublicFunction();
-            List<string> strRunTimeValues = Function.getNewList(strRunTimeForRun);
+            List<string> strRunTimeValues = Function.getNewList(strRunTimeForRunValues);
             cboRunTimeValues.DataSource = strRunTimeValues;
         }
 
