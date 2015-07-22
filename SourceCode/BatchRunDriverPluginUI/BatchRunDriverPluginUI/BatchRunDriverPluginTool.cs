@@ -73,12 +73,12 @@ namespace BatchRunDriverPluginUI
                //Get the Driver Script path
                string DriverPath = GetPath.DriverPath(StrTestData);
                //Copy the OutPut into the Temp
-               DirectoryInfo dir = new DirectoryInfo("Rescources");
+               DirectoryInfo dir = new DirectoryInfo("Resources");
                string StrPath = dir.FullName.ToString();
                 //Get the Path of the vbs
-               string tempVBSPath = StrPath + @"\Resources" + @"\" + "RunDriver.vbs";
+               string tempVBSPath = StrPath + @"\" + "RunDriver.vbs";
                 //Get the Path of the output
-               string templateXlsPath = StrPath + @"\Resources" + @"\" + "Output.xlsx";
+               string templateXlsPath = StrPath + @"\" + "Output.xlsx";
                //byte[] OutputXls = BatchRunResources.Output; 
                //FileStream outputExcelFile = new FileStream(templateXlsPath, FileMode.Create, FileAccess.Write); 
                //outputExcelFile.Write(OutputXls, 0, OutputXls.Length); 
@@ -95,7 +95,8 @@ namespace BatchRunDriverPluginUI
               //Get the Values that would be add in the Driver.xls
                List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData, StrRunTimeValue);
                string StrComCodeValue = StrExcelValues[0];
-               string StrTestAssentValue = StrExcelValues[1];
+               string AssetValues = StrExcelValues[1];
+               string StrTestAssentValue = AssetValues.Substring(AssetValues.Length - 3);
                string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;
               
                GetData.InsertRowsValues(strDriverPath, StrTestCaseName, strTestDataPath, StrComCodeValue, StrTestAssentValue, StrRunTimeValue);
@@ -130,10 +131,10 @@ namespace BatchRunDriverPluginUI
                 //Get the Driver Script path
                 PublicFunction GetDriverScriptPath = new PublicFunction();
                 string DriverScriptPath = GetDriverScriptPath.DriverPath(StrTestData);
-                DirectoryInfo dir = new DirectoryInfo("Rescources");
-                string StrPath = dir.Parent.Parent.Parent.FullName.ToString();
+                DirectoryInfo dir = new DirectoryInfo("Resources");
+                string StrPath = dir.FullName.ToString();
                 //Get the Path of the vbs
-               string tempVBSPath = StrPath + @"\Resources" + @"\" + "RunDriver.vbs";
+               string tempVBSPath = StrPath + @"\" + "RunDriver.vbs";
                 //Run the Driver VBS 
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.FileName = "wscript.exe";
@@ -165,10 +166,10 @@ namespace BatchRunDriverPluginUI
                 //Get the Driver Script path
                 PublicFunction GetDriverScriptPath = new PublicFunction();
                 string DriverScriptPath = GetDriverScriptPath.DriverPath(StrTestData);
-                DirectoryInfo dir = new DirectoryInfo("Rescources");
-                string StrPath = dir.Parent.Parent.Parent.FullName.ToString();
+                DirectoryInfo dir = new DirectoryInfo("Resources");
+                string StrPath = dir.FullName.ToString();
                 //Get the Path of the vbs
-                string tempVBSPath = StrPath + @"\Resources" + @"\" + "RunDriver.vbs";
+                string tempVBSPath = StrPath + @"\" + "RunDriver.vbs";
                 //Run the Driver VBS 
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.FileName = "wscript.exe";
@@ -199,7 +200,8 @@ namespace BatchRunDriverPluginUI
             string StrRunTimeValue = GetData.GetRunTimeVlaue(StrOutPutData);
             List<String> StrExcelValues = GetData.GetExcelValuesList(StrTestData, StrRunTimeValue);
             string StrComCodeValue = StrExcelValues[0];
-            string StrTestAssentValue = StrExcelValues[1];
+            string AssetValues = StrExcelValues[1];
+            string StrTestAssentValue = AssetValues.Substring(AssetValues.Length - 3);
             string StrTestCaseName = StrComCodeValue + "_" + strTestDataNameValue + "_" + StrTestAssentValue;           
             GetData.InsertRowsValues(strDriverPath, StrTestCaseName, strTestDataPath, StrComCodeValue, StrTestAssentValue, StrRunTimeValue);
         }

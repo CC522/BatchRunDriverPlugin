@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchRunDriverPluginUI", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHelper", "..\DataHelper\DataHelper.csproj", "{5AEC3681-90C5-469A-83BD-B8423DAE3470}"
 EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "BatchRunDriver", "BatchRunDriver\BatchRunDriver.isproj", "{528D80CF-D65A-4A38-B9A7-100B1261C73C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -34,6 +36,16 @@ Global
 		{5AEC3681-90C5-469A-83BD-B8423DAE3470}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AEC3681-90C5-469A-83BD-B8423DAE3470}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{5AEC3681-90C5-469A-83BD-B8423DAE3470}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.Debug|Any CPU.ActiveCfg = DVD-5
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.Debug|Any CPU.Build.0 = DVD-5
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.DVD-5|Any CPU.Build.0 = DVD-5
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.Release|Any CPU.ActiveCfg = SingleImage
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.Release|Any CPU.Build.0 = SingleImage
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{528D80CF-D65A-4A38-B9A7-100B1261C73C}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

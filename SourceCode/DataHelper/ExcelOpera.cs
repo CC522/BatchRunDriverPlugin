@@ -36,7 +36,7 @@ namespace DataHelper
             int rowcolum = 0;
             int RowID = 0;
             List<String> str = new List<String>();
-
+            List<String> strRowID = new List<String>();
             for (int i = 1; i <= columnsint; i++)
             {
                 string strColumnsName = ((Range)objExcelWorkSheet.Cells[1, i]).Text.ToString();
@@ -49,21 +49,26 @@ namespace DataHelper
                         if(strRowValue == StrRuntime)
                         {
                             RowID = j;
+                            strRowID.Add(RowID.ToString());
                         }
                     }
                 }
                   if (strColumnsName == "CompanyCode")
                  {
                       rowcolum = i;//得到Column号
-                      String temp = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
-                      str.Add(((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString());
+                      string strRowIDNo = strRowID[0];
+                      int RowNo = Convert.ToInt32(strRowIDNo);
+                      String temp = ((Range)objExcelWorkSheet.Cells[RowNo, i]).Text.ToString();
+                      str.Add(((Range)objExcelWorkSheet.Cells[RowNo, i]).Text.ToString());
                   }
                   if (strColumnsName == "TargetBoxName")
                  {
                       rowcolum = i;//得到行号
-                      String tempAssent = ((Range)objExcelWorkSheet.Cells[RowID, i]).Text.ToString();
-                      string Asset = tempAssent.Substring(tempAssent.Length - 3);
-                      str.Add(Asset);
+                      string strRowIDNo = strRowID[0];
+                      int RowNo = Convert.ToInt32(strRowIDNo);
+                      String tempAssent = ((Range)objExcelWorkSheet.Cells[RowNo, i]).Text.ToString();
+                     // string Asset = tempAssent.Substring(tempAssent.Length - 3);
+                      str.Add(tempAssent);
                    }
                 }
                 //if (strColumnsName == "CompanyCode")
