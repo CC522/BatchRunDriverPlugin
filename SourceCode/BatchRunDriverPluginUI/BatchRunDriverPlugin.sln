@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchRunDriverPluginUI", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHelper", "..\DataHelper\DataHelper.csproj", "{5AEC3681-90C5-469A-83BD-B8423DAE3470}"
 EndProject
-Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "BatchRunDriver", "BatchRunDriver\BatchRunDriver.isproj", "{528D80CF-D65A-4A38-B9A7-100B1261C73C}"
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Step", "BatchRunDriver\Step.isproj", "{528D80CF-D65A-4A38-B9A7-100B1261C73C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
